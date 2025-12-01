@@ -1,3 +1,14 @@
-<h1>Angular 21 news</h1>
+<div class="m-auto max-w-3xl">
+  <header class="border-b border-solid border-neutral-300 px-6 py-4">
+    Angular 21
 
-<router-outlet />
+    <nav class="inline-flex">
+      <a routerLink="/signal-form" class="ms-3 underline">Signal form</a>
+      <a routerLink="/reactive-form" class="ms-3 underline">Reactive form</a>
+    </nav>
+  </header>
+
+  <main class="p-6">
+    <router-outlet />
+  </main>
+</div>

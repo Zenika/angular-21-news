@@ -1,0 +1,64 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1 class="mb-4 text-2xl">Reactive form</h1>
+
+  <fieldset class="mb-4 border border-neutral-300 bg-neutral-50 px-5 py-2">
+    <legend class="px-3">Identification</legend>
+
+    <app-input-field
+      label="Email"
+      name="control-email"
+      [required]="true"
+      [formControl]="form.controls.email"
+      [errorMessage]="form.controls.email.errors | errorMessage: errorMessageMap"
+    />
+
+    <app-input-field
+      label="Password"
+      name="control-password"
+      type="password"
+      [required]="true"
+      [formControl]="form.controls.password"
+      [errorMessage]="form.controls.password.errors | errorMessage: errorMessageMap"
+    />
+  </fieldset>
+
+  <fieldset class="mb-4 border border-neutral-300 bg-neutral-50 px-5 py-2">
+    <legend class="px-3">Location</legend>
+
+    <app-input-field
+      label="Name"
+      name="control-name"
+      [required]="true"
+      [formControl]="form.controls.location.controls.name"
+      [errorMessage]="form.controls.location.controls.name.errors | errorMessage: errorMessageMap"
+    />
+
+    <app-input-field
+      label="Full address"
+      name="control-address"
+      [formControl]="form.controls.location.controls.address"
+      [errorMessage]="
+        form.controls.location.controls.address.errors | errorMessage: errorMessageMap
+      "
+    />
+  </fieldset>
+
+  <p class="mt-6">
+    <button
+      class="me-4 bg-blue-500 px-3 py-1 text-white outline-offset-1 outline-neutral-600 focus:outline-1 disabled:opacity-50"
+      [disabled]="form.invalid || form.disabled"
+    >
+      Submit
+    </button>
+
+    <button
+      class="bg-neutral-500 px-3 py-1 text-white outline-offset-1 outline-neutral-600 focus:outline-1 disabled:opacity-50"
+      [disabled]="form.disabled"
+      type="reset"
+    >
+      Reset
+    </button>
+  </p>
+</form>
+
+<pre class="mt-8 border border-neutral-200 bg-neutral-50 px-5 py-4">{{ form.value | json }}</pre>

@@ -1,0 +1,38 @@
+<form (submit)="submit($event)">
+  <h1 class="mb-4 text-2xl">Signal form</h1>
+
+  <fieldset class="mb-4 border border-neutral-300 bg-neutral-50 px-5 py-2">
+    <legend class="px-3">Identification</legend>
+
+    <app-input-field label="Email" [field]="form.email" />
+
+    <app-input-field label="Password" [field]="form.password" />
+  </fieldset>
+
+  <fieldset class="mb-4 border border-neutral-300 bg-neutral-50 px-5 py-2">
+    <legend class="px-3">Location</legend>
+
+    <app-input-field label="Name" [field]="form.location.name" />
+
+    <app-input-field label="Full address" [field]="form.location.address" />
+  </fieldset>
+
+  <p class="mt-6">
+    <button
+      class="me-4 bg-blue-500 px-3 py-1 text-white outline-offset-1 outline-neutral-600 focus:outline-1 disabled:opacity-50"
+      [disabled]="form().invalid() || form().disabled()"
+    >
+      Submit
+    </button>
+
+    <button
+      class="bg-neutral-500 px-3 py-1 text-white outline-offset-1 outline-neutral-600 focus:outline-1 disabled:opacity-50"
+      [disabled]="form().disabled()"
+      type="reset"
+    >
+      Reset
+    </button>
+  </p>
+</form>
+
+<pre class="mt-8 border border-neutral-200 bg-neutral-50 px-5 py-4">{{ formModel() | json }}</pre>
