@@ -8,7 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "predocs": "rm -rf ./docs",
+    "docs": "ng build --base-href /angular-21-news/",
+    "postdocs": "mv dist/angular-21-news/browser docs && cp docs/index.html docs/404.html"
   },
   "prettier": {
     "printWidth": 100,
