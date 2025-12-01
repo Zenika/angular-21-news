@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
   <h1 class="mb-4 text-2xl">Reactive form</h1>
 
-  <fieldset class="mb-4 border border-neutral-300 bg-neutral-50 px-5 py-2">
+  <fieldset class="mb-4 border-2 border-neutral-300 bg-neutral-50 px-5 py-2">
     <legend class="px-3">Identification</legend>
 
     <app-input-field
@@ -22,7 +22,7 @@
     />
   </fieldset>
 
-  <fieldset class="mb-4 border border-neutral-300 bg-neutral-50 px-5 py-2">
+  <fieldset class="mb-4 border-2 border-neutral-300 bg-neutral-50 px-5 py-2">
     <legend class="px-3">Location</legend>
 
     <app-input-field
@@ -61,4 +61,4 @@
   </p>
 </form>
 
-<pre class="mt-8 border border-neutral-200 bg-neutral-50 px-5 py-4">{{ form.value | json }}</pre>
+<pre class="mt-8 border-2 border-neutral-300 bg-neutral-50 px-5 py-4">{{ form.value | json }}</pre>
