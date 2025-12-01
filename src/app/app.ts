@@ -6,4 +6,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
 })
-export class App {}
+export class App {
+  protected year = new Date().getFullYear();
+}

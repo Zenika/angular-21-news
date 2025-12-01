@@ -1,13 +1,32 @@
 <div class="m-auto max-w-3xl">
-  <header class="flex justify-between gap-4 border-b border-solid border-neutral-300 px-6 py-4">
-    Angular 21
+  <header
+    class="flex items-center justify-between gap-4 border-b border-solid border-neutral-300 px-6 py-4"
+  >
+    <div class="flex gap-2 font-medium whitespace-nowrap">
+      <img class="shrink-0" src="/favicon.ico" alt="" style="width: 1.5rem; height: 1.5rem" />
+      Angular 21
+    </div>
 
     <nav class="inline-flex">
-      <a routerLink="/signal-form" class="underline">Signal form</a>
-      <a routerLink="/reactive-form" class="ms-4 underline">Reactive form</a>
+      <a
+        routerLink="/signal-form"
+        class="underline outline-offset-2 outline-neutral-600 focus:outline-1"
+      >
+        Signal form
+      </a>
+      <a
+        routerLink="/reactive-form"
+        class="ms-4 underline outline-offset-2 outline-neutral-600 focus:outline-1"
+      >
+        Reactive form
+      </a>
     </nav>
 
-    <a href="https://github.com/Zenika/angular-21-news" target="_blank" class="underline">
+    <a
+      href="https://github.com/Zenika/angular-21-news"
+      target="_blank"
+      class="underline outline-offset-2 outline-neutral-600 focus:outline-1"
+    >
       View on GitHub
     </a>
   </header>
@@ -15,4 +34,10 @@
   <main class="p-6">
     <router-outlet />
   </main>
+
+  <footer
+    class="mt-4 border-t border-solid border-neutral-300 px-6 py-3 text-center text-neutral-500"
+  >
+    Copyright &copy; {{ year }} Zenika - Tous droits réservés.
+  </footer>
 </div>
