@@ -31,14 +31,29 @@ export class SignalForm {
     disabled(path, () => this.form().submitting());
   });
 
-  submit(event: SubmitEvent) {
+  protected emulateServerError = signal(false);
+
+  protected toggleEmulateServerError() {
+    this.emulateServerError.update((value) => !value);
+  }
+
+  protected submit(event: SubmitEvent) {
     event.preventDefault();
 
     submit(this.form, async () => {
       return new Promise((resolve) => {
         setTimeout(() => {
           console.log('Form submitted', this.form().value());
-          resolve();
+
+          resolve(
+            this.emulateServerError()
+              ? {
+                  kind: 'server',
+                  message: 'This email address already exists',
+                  field: this.form.email,
+                }
+              : null,
+          );
         }, 2000);
       });
     });

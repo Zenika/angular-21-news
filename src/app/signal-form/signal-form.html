@@ -26,12 +26,21 @@
     </button>
 
     <button
-      class="bg-neutral-500 px-3 py-1 text-white outline-offset-1 outline-neutral-600 focus:outline-1 disabled:opacity-50"
+      class="me-4 bg-neutral-500 px-3 py-1 text-white outline-offset-1 outline-neutral-600 focus:outline-1 disabled:opacity-50"
       [disabled]="form().disabled()"
       type="reset"
     >
       Reset
     </button>
+
+    <label>
+      <input
+        type="checkbox"
+        [checked]="emulateServerError()"
+        (click)="toggleEmulateServerError()"
+      />
+      Emulate Server Error
+    </label>
   </p>
 </form>
 

@@ -15,6 +15,7 @@ Both implementations feature:
 - Nested form groups (location with name and address)
 - Custom validation messages
 - Form submission with loading state
+- Server error emulation and handling
 - Reusable input field components
 - Real-time form value display
 
@@ -93,6 +94,31 @@ protected form = this.fb.group({
 - **Signal Forms**: Built-in `submit()` function with async support and automatic loading state
 - **Reactive Forms**: Manual disable/enable during async operations
 
+#### 6. **Server Error Handling**
+
+**Signal Form:**
+```typescript
+submit(this.form, async () => {
+  return this.emulateServerError()
+    ? {
+        kind: 'server',
+        message: 'This email address already exists',
+        field: this.form.email,
+      }
+    : null;
+});
+```
+
+**Reactive Form:**
+```typescript
+if (this.emulateServerError()) {
+  this.form.controls.email.setErrors({ server: true });
+}
+```
+
+- **Signal Forms**: Return error objects from the submit function with structured error information
+- **Reactive Forms**: Manually set errors on form controls using `setErrors()`
+
 ## Project Structure
 
 ```
@@ -124,6 +150,7 @@ src/app/
 - Inline error messages
 - Built-in submission handling
 - Automatic form disabling during submission
+- Structured server error handling via submit function return values
 
 ### Reactive Forms ([reactive-form.ts](src/app/reactive-form/reactive-form.ts))
 
@@ -132,6 +159,7 @@ src/app/
 - Error message pipe for mapping
 - Manual submission state management
 - Nested form groups
+- Server error handling via `setErrors()` on form controls
 
 ### Both Implementations Include
 
@@ -140,6 +168,7 @@ src/app/
 - Required field validation
 - Nested location object
 - Form reset functionality
+- Server error emulation toggle
 - Real-time form value preview
 - Accessible form controls
 
