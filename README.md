@@ -2,6 +2,8 @@
 
 This project demonstrates the new **Signal Forms** feature introduced in Angular 21 and compares it with traditional **Reactive Forms**. It showcases the same form implementation using both approaches, highlighting the differences in API, syntax, and developer experience.
 
+[View demo](https://zenika.github.io/angular-21-news/signal-form)
+
 ## Overview
 
 This demo application implements a user registration form with validation using both form paradigms:
@@ -97,6 +99,7 @@ protected form = this.fb.group({
 #### 6. **Server Error Handling**
 
 **Signal Form:**
+
 ```typescript
 submit(this.form, async () => {
   return this.emulateServerError()
@@ -110,6 +113,7 @@ submit(this.form, async () => {
 ```
 
 **Reactive Form:**
+
 ```typescript
 if (this.emulateServerError()) {
   this.form.controls.email.setErrors({ server: true });
