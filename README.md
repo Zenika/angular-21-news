@@ -78,7 +78,10 @@ export class SignalForm {
 
     submit(this.form, async () => {
       try {
-        await fetch('/api/update/data', { method: 'POST', body: JSON.stringify(this.form().value()) });
+        await fetch('/api/update/data', {
+          method: 'POST',
+          body: JSON.stringify(this.form().value())
+        });
         return null;
       } catch {
         return { kind: 'server', message: 'An error occured' }
@@ -97,7 +100,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   imports: [ReactiveFormsModule],
   ...
 })
-export class SignalForm {
+export class ReactiveForm {
   private fb = inject(FormBuilder);
 
   form = this.fb.group({
@@ -114,7 +117,10 @@ export class SignalForm {
     this.form.disable();
 
     try {
-      await fetch('/api/update/data', { method: 'POST', body: JSON.stringify(this.form.value) });
+      await fetch('/api/update/data', {
+        method: 'POST',
+        body: JSON.stringify(this.form.value)
+      });
       this.form.enable();
     } catch {
       this.form.enable();
@@ -276,7 +282,3 @@ src/app/
 
 - [Angular Forms Documentation](https://angular.dev/guide/forms)
 - [Angular Signals](https://angular.dev/guide/signals)
-
-## License
-
-This project is for demonstration purposes only.
