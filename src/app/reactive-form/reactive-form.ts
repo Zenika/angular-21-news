@@ -35,7 +35,7 @@ export class ReactiveForm {
     this.emulateServerError.update((value) => !value);
   }
 
-  protected submit() {
+  protected register() {
     this.form.disable();
 
     setTimeout(() => {

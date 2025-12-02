@@ -39,7 +39,7 @@ npm install
 npm start
 ```
 
-Navigate to `http://localhost:4200/`. The application will automatically reload when you change source files.
+Navigate to `http://localhost:4200/`.
 
 ## Signal Form VS Reactive Form
 
@@ -50,30 +50,78 @@ Navigate to `http://localhost:4200/`. The application will automatically reload 
 **Signal Form:**
 
 ```typescript
-protected formModel = signal({
-  email: '',
-  password: '',
-  location: { name: '', address: '' }
-});
+import { email, Field, form, minLength, required, submit } from '@angular/forms/signals';
 
-protected form = form(this.formModel, (path) => {
-  required(path.email, { message: 'Field required' });
-  email(path.email, { message: 'Invalid email' });
-  minLength(path.password, 5, { message: 'Must contain at least 5 characters' });
-});
+@Component({
+  imports: [Field],
+  ...
+})
+export class SignalForm {
+  formModel = signal({
+    email: '',
+    password: '',
+
+    location: {
+      name: '',
+      address: ''
+    }
+  });
+
+  form = form(this.formModel, (path) => {
+    required(path.email, { message: 'Field required' });
+    email(path.email, { message: 'Invalid email' });
+    minLength(path.password, 5, { message: 'Must contain at least 5 characters' });
+  });
+
+  register(event: SubmitEvent) {
+    event.preventDefault();
+
+    submit(this.form, async () => {
+      try {
+        await fetch('/api/update/data', { method: 'POST', body: JSON.stringify(this.form().value()) });
+        return null;
+      } catch {
+        return { kind: 'server', message: 'An error occured' }
+      }
+    });
+  }
+}
 ```
 
 **Reactive Form:**
 
 ```typescript
-protected form = this.fb.group({
-  email: ['', [Validators.required, Validators.email]],
-  password: ['', [Validators.required, Validators.minLength(5)]],
-  location: this.fb.group({
-    name: ['', [Validators.required]],
-    address: ['']
-  })
-});
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
+@Component({
+  imports: [ReactiveFormsModule],
+  ...
+})
+export class SignalForm {
+  private fb = inject(FormBuilder);
+
+  form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(5)]],
+
+    location: this.fb.group({
+      name: ['', [Validators.required]],
+      address: ['']
+    })
+  });
+
+  async register() {
+    this.form.disable();
+
+    try {
+      await fetch('/api/update/data', { method: 'POST', body: JSON.stringify(this.form.value) });
+      this.form.enable();
+    } catch {
+      this.form.enable();
+      this.form.controls.email.setErrors({ server: true });
+    }
+  }
+}
 ```
 
 #### 2. **Validation**
@@ -89,7 +137,7 @@ protected form = this.fb.group({
 #### 4. **Template Integration**
 
 - **Signal Forms**: Use the `Field` directive for automatic two-way binding
-- **Reactive Forms**: Use `ReactiveFormsModule` with `formControl` and `formGroup` directives
+- **Reactive Forms**: Use `ReactiveFormsModule` with `FormControl` and `FormGroup` directives
 
 #### 5. **Submission Handling**
 
@@ -98,30 +146,78 @@ protected form = this.fb.group({
 
 #### 6. **Server Error Handling**
 
-**Signal Form:**
+- **Signal Forms**: Return error objects from the submit function with structured error information
+- **Reactive Forms**: Manually set errors on form controls using `setErrors()`
+
+#### 7. **Custom control**
+
+**Signal Forms:**
 
 ```typescript
-submit(this.form, async () => {
-  return this.emulateServerError()
-    ? {
-        kind: 'server',
-        message: 'This email address already exists',
-        field: this.form.email,
-      }
-    : null;
-});
-```
+import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
-**Reactive Form:**
+@Component({
+  selector: 'app-input-field',
+  templateUrl: './input-field.html',
+})
+export class InputField implements FormValueControl<string> {
+  label = input.required<string>();
 
-```typescript
-if (this.emulateServerError()) {
-  this.form.controls.email.setErrors({ server: true });
+  // ----- FormValueControl -----
+  name = input('');
+  value = model('');
+  touched = model(false);
+  disabled = model(false);
+  required = input(false);
+  invalid = input(false);
+  errors = input<readonly WithOptionalField<ValidationError>[]>([]);
 }
 ```
 
-- **Signal Forms**: Return error objects from the submit function with structured error information
-- **Reactive Forms**: Manually set errors on form controls using `setErrors()`
+**Reactive Forms:**
+
+```typescript
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+@Component({
+  selector: 'app-input-field',
+  templateUrl: './input-field.html',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputField),
+      multi: true,
+    },
+  ],
+})
+export class InputField implements ControlValueAccessor {
+  label = input.required<string>();
+
+  value = model('');
+  touched = model(false);
+  disabled = model(false);
+
+  onChange = (value: string) => {};
+  onTouched = () => {};
+
+  // ----- ControlValueAccessor -----
+  writeValue(value: string) {
+    this.value.set(value);
+  }
+  registerOnChange(onChange: (value: string) => void) {
+    this.onChange = onChange;
+  }
+  registerOnTouched(onTouched: () => void) {
+    this.onTouched = onTouched;
+  }
+  setDisabledState?(disabled: boolean) {
+    this.disabled.set(disabled);
+  }
+}
+```
+
+- **Signal Forms**: Implement `FormValueControl<T>` interface with signal-based inputs and models. No provider configuration needed, and automatic integration with the `Field` directive.
+- **Reactive Forms**: Implement `ControlValueAccessor` interface with manual `NG_VALUE_ACCESSOR` provider setup, callback registration, and lifecycle methods.
 
 ## Project Structure
 

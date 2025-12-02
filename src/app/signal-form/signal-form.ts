@@ -37,7 +37,7 @@ export class SignalForm {
     this.emulateServerError.update((value) => !value);
   }
 
-  protected submit(event: SubmitEvent) {
+  protected register(event: SubmitEvent) {
     event.preventDefault();
 
     submit(this.form, async () => {
