@@ -31,10 +31,10 @@ export class SignalForm {
     disabled(path, () => this.form().submitting());
   });
 
-  protected emulateServerError = signal(false);
+  protected hasServerError = signal(false);
 
-  protected toggleEmulateServerError() {
-    this.emulateServerError.update((value) => !value);
+  protected toggleServerError() {
+    this.hasServerError.update((value) => !value);
   }
 
   protected register(event: SubmitEvent) {
@@ -46,7 +46,7 @@ export class SignalForm {
           console.log('Form submitted', this.form().value());
 
           resolve(
-            this.emulateServerError()
+            this.hasServerError()
               ? {
                   kind: 'server',
                   message: 'This email address already exists',

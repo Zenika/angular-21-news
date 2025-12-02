@@ -19,14 +19,14 @@
 
   <p class="mt-6">
     <button
-      class="me-4 bg-blue-500 px-3 py-1 text-white outline-offset-2 outline-neutral-600 focus:outline-1 disabled:opacity-50"
+      class="me-4 bg-blue-500 px-3 py-1 text-white outline-offset-2 outline-neutral-600 focus:outline-2 disabled:opacity-50"
       [disabled]="form().invalid() || form().disabled()"
     >
       Submit
     </button>
 
     <button
-      class="me-4 bg-neutral-500 px-3 py-1 text-white outline-offset-2 outline-neutral-600 focus:outline-1 disabled:opacity-50"
+      class="me-4 bg-neutral-500 px-3 py-1 text-white outline-offset-2 outline-neutral-600 focus:outline-2 disabled:opacity-50"
       [disabled]="form().disabled()"
       type="reset"
     >
@@ -35,12 +35,12 @@
 
     <label>
       <input
-        class="outline-offset-2 outline-neutral-600 focus:outline-1"
+        class="outline-offset-2 outline-neutral-600 focus:outline-2"
         type="checkbox"
-        [checked]="emulateServerError()"
-        (click)="toggleEmulateServerError()"
+        [checked]="hasServerError()"
+        (click)="toggleServerError()"
       />
-      Emulate Server Error
+      Simulate a server error
     </label>
   </p>
 </form>

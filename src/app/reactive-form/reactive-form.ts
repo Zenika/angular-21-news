@@ -29,10 +29,10 @@ export class ReactiveForm {
     server: 'This email address already exists',
   };
 
-  protected emulateServerError = signal(false);
+  protected hasServerError = signal(false);
 
-  protected toggleEmulateServerError() {
-    this.emulateServerError.update((value) => !value);
+  protected toggleServerError() {
+    this.hasServerError.update((value) => !value);
   }
 
   protected register() {
@@ -42,7 +42,7 @@ export class ReactiveForm {
       console.log('Form submitted', this.form.value);
 
       this.form.enable();
-      if (this.emulateServerError()) {
+      if (this.hasServerError()) {
         this.form.controls.email.setErrors({ server: true });
       }
     }, 2000);
