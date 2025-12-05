@@ -49,6 +49,27 @@ Navigate to `http://localhost:4200/`.
 
 **Signal Form:**
 
+_Signal Forms can be configured globally using `provideSignalFormsConfig`:_
+
+```typescript
+import { provideSignalFormsConfig } from '@angular/forms/signals';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideSignalFormsConfig({
+      classes: {
+        'form-control-invalid': (s) => s.touched() && s.invalid(),
+        'form-control-valid': (s) => s.touched() && s.valid(),
+      },
+    }),
+  ],
+};
+```
+
+This configuration allows you to define dynamic CSS classes that are automatically applied to form controls based on their state, providing a centralized way to style form validation across your application.
+
+_Component implementation:_
+
 ```typescript
 import { email, Field, form, minLength, required, submit } from '@angular/forms/signals';
 
@@ -257,6 +278,7 @@ src/app/
 - Built-in submission handling
 - Automatic form disabling during submission
 - Structured server error handling via submit function return values
+- Global configuration with `provideSignalFormsConfig` for dynamic CSS classes
 
 ### Reactive Forms ([reactive-form.ts](src/app/reactive-form/reactive-form.ts))
 

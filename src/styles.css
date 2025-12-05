@@ -1,1 +1,13 @@
 @import 'tailwindcss';
+
+.form-control-invalid {
+  input {
+    @apply border-red-500;
+  }
+}
+
+.form-control-valid {
+  input {
+    @apply border-emerald-500;
+  }
+}
