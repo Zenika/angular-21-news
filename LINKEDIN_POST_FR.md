@@ -6,7 +6,7 @@ Analyse : comparaison des Signal Forms avec les Reactive Forms 👇
 
 Stéphane Francel, notre Consultant et Formateur Full-stack, a comparé pour vous les nouveaux Signal Forms d'Angular 21 avec les Reactive Forms traditionnels, et les différences sont bluffantes.
 
-👉 Le cas des contrôles personnalisés à elle seule vaut le détour :
+👉 Le cas des contrôles personnalisés à lui seul vaut le détour :
 
 Reactive Forms : 40+ lignes de code et répétitif
 
