@@ -1,40 +1,42 @@
 # Publication LinkedIn
 
-**Angular 21 vient de révolutionner les formulaires 🎯**
+💡 Angular 21 vient de révolutionner les formulaires !
 
-J'ai passé du temps à comparer les nouveaux Signal Forms d'Angular 21 avec les Reactive Forms traditionnels, et les différences sont frappantes.
+Analyse : comparaison des Signal Forms avec les Reactive Forms 👇
 
-**L'histoire des contrôles personnalisés à elle seule vaut le détour :**
+Stéphane Francel, notre Consultant et Formateur Full-stack, a comparé pour vous les nouveaux Signal Forms d'Angular 21 avec les Reactive Forms traditionnels, et les différences sont bluffantes.
 
-Reactive Forms : 40+ lignes de code répétitif
+👉 Le cas des contrôles personnalisés à elle seule vaut le détour :
+
+Reactive Forms : 40+ lignes de code et répétitif
 
 - Implémenter ControlValueAccessor
-- Enregistrer les callbacks manuellement
+- Enregistrer les callbacks manuellement (registerOnChange, registerOnTouched)
 - Configurer le provider NG_VALUE_ACCESSOR
-- Gérer les méthodes de cycle de vie
+- Gérer les méthodes de cycle de vie manuellement
 
-Signal Forms : 12 lignes
+Signal Forms : 12 lignes seulement !
 
 - Implémenter FormValueControl<T>
-- Utiliser les signals et models
-- Et voilà !
+- Utiliser les signals et models gérés automatiquement
 
-**Mais ce n'est pas tout :**
+Mais ce n'est pas tout ! Avec les nouveaux Signal Forms :
 
-✅ Configuration des validateurs basée sur les paths
-✅ Validation inline avec messages personnalisés
-✅ Gestion intégrée des soumissions asynchrones (fini le disable/enable manuel)
-✅ Gestion structurée des erreurs serveur
+- Configuration des validateurs basée sur les paths
+- Personnalisation des classes d'états (ng-touched, ng-invalid, ...)
+- Validation inline avec messages personnalisés
+- Gestion intégrée des soumissions asynchrones (fini le disable/enable manuel)
+- Gestion structurée des erreurs serveur
 
-J'ai construit le même formulaire d'inscription (avec groupes imbriqués, validation et gestion d'erreurs) en utilisant les deux approches dans une démo côte à côte.
+Stéphane a construit le même formulaire en utilisant les deux approches dans une démo côte à côte.
+Les exemples de code, la décomposition des fonctionnalités et les différences clés sont documentés avec des implémentations fonctionnelles que vous pouvez explorer. 🚀
 
-Les exemples de code, la décomposition des fonctionnalités et les différences clés sont documentés avec des implémentations fonctionnelles que vous pouvez explorer.
+Curieux de découvrir les différences d'API ?
 
-**Curieux de découvrir les différences d'API ?**
-**Envie de voir la comparaison du code ?**
+Envie de voir la comparaison du code ?
 
-Découvrez l'analyse complète et la démo en direct dans le dépôt 👇
+Découvrez l'analyse complète et la démo live dans le dépôt :
 
-https://github.com/Zenika/angular-21-news
+📕 https://github.com/Zenika/angular-21-news
 
 #Angular #WebDevelopment #TypeScript #Frontend
