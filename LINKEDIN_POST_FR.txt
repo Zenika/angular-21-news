@@ -1,0 +1,19 @@
+💡 Angular 21 vient de révolutionner les formulaires.
+
+👉 Les Signal Forms réduisent drastiquement la complexité des formulaires Angular tout en améliorant la lisibilité, la maintenabilité et l'expérience dev.
+
+Cela permet à présent de créer, valider et maintenir des formulaires de manière plus simple, plus claire et plus robuste.
+
+Notre consultant & formateur Full-stack, Stéphane Francel, a comparé les Signal Forms aux Reactive Forms… et les résultats parlent d’eux-mêmes !
+
+Quelques exemples:
+Reactive Forms : API basée sur les Observables, Gestion manuelle des messages d'erreur, Pas de gestion des erreurs serveur, ...
+vs
+Signal Forms : API moderne basée sur les signals natifs d'Angular, Messages d'erreur intégrés, Erreurs serveur structurées, ...
+
+✨ Résultat : simplicité du modèle mentale et élégance du code.
+
+Explorez les exemples, la comparaison détaillée et la démo dans le dépôt :
+https://github.com/Zenika/angular-21-news
+
+#Angular #WebDevelopment #Frontend #TypeScript
