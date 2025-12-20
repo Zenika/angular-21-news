@@ -58,8 +58,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideSignalFormsConfig({
       classes: {
-        'form-control-invalid': (s) => s.touched() && s.invalid(),
-        'form-control-valid': (s) => s.touched() && s.valid(),
+        'form-control-invalid': ({ state }) => state().touched() && state().invalid(),
+        'form-control-valid': ({ state }) => state().touched() && state().valid(),
       },
     }),
   ],

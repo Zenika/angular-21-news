@@ -50,7 +50,7 @@ export class SignalForm {
               ? {
                   kind: 'server',
                   message: 'This email address already exists',
-                  field: this.form.email,
+                  fieldTree: this.form.email,
                 }
               : null,
           );
